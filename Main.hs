@@ -3,8 +3,14 @@ import Funcoes
 
 main :: IO ()
 main = do
-  let (w,h) = (900,500) --Usuário digita isso
-      nrects = 360 --Usuário tbm
+  --putStrLn "Informe a largura maxima da imagem: "
+  
 
-      svgDados = svgBegin w h ++ svgimg ++ svgEnd
-   in writeFile "img.svg" $ svgDados
+  --putStrLn "Informe a altura maxima da imagem: "
+  
+
+  putStrLn "Informe um raio: "
+  r <- leInt
+
+  writeFile "img.svg" (arquivo)
+  where arquivo = svgBegin (leInt) (leInt) ++ (svgCircle 120 50 50 "rgb(105, 14, 30, 0.3)") ++ svgEnd
