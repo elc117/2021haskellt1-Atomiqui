@@ -11,5 +11,6 @@ A cor deve variar de acordo com o tamanho da imagem (x e y), o raio e o número 
 
 Problemas:
 1) Valores muito distantes resultam em uma lista de círculos desconexos, então usar x e y sendo valores próximos pode resultar em uma imagem que seja mais fiel ao propósito...
+Por exemplo, a imagem de exemplo é construida com: x = 500, y = 500, r = 50 e valor aleatório = 50.
 
 2) Me limitei a pensar em números aleatórios (e acabou que não consegui inserir no código) assim, resultou em uma pouca variedade de cores para a imagem.

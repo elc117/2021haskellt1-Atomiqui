@@ -12,15 +12,8 @@ leInt = do
   i <- readLn
   return i
 
-leCord :: IO(Int, Int)
-leCord = do
-  readLn
-
 tenPercent :: Float -> Int
 tenPercent x = floor (0.1*x)
-
-mediaXY :: Float -> Float -> Float
-mediaXY x y = ((x+y)/2)
 
 -- Gera um lista de circulos a partir do uso da função "svgCircle"
 lstCirc :: Int -> Int -> Int -> Int -> [String]
@@ -31,7 +24,7 @@ geraCor :: Int -> Int -> String
 geraCor x y
   | x < y = (\x -> "rgb" ++ show x) (y-x, x*2, 2*(x-y)+y)
   | x > y = (\x -> "rgb" ++ show x) (2*(x-y)+y, x*2, y-x)
-  | otherwise = (\x -> "rgb" ++ show x) (x, y-x, x*2)
+  | x == y = (\x -> "rgb" ++ show x) (x, y-x, x*2)
 
 -- Reaproveitadas dos seus arquivos SVG
 -- String inicial do SVG
