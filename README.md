@@ -1,50 +1,15 @@
-import Text.Printf
+Nome: Alisson Costa Schmidt.
+Matrícula: 202010870.
 
-leLarg :: IO(Int)
-leLarg = do 
- putStr "Digite a largura da imagem:  "
- readLn
+Objetivo:
+O programa tem como foco formar linhas em degradê, utilizando a sobreposição de circulos.
 
-leAlt :: IO(Int)
-leAlt = do 
- putStr "Digite a altura da imagem:  "
- readLn
+Implementação:
+Utilizando os arquivos svg das praticas como base, a construção do programa se deu em volta da função "svgCircle", retirada de uma das práticas.
+A cor de uma lista de circulos é distribuida de forma que varie a cada circulo, assim formando o degradê.
+A cor deve variar de acordo com o tamanho da imagem (x e y), o raio e o numero aleatório que for passado.
 
-lePonto :: IO(Int,Int)
-lePonto = do 
- putStr "Digite um ponto inicial. Escreva nesse modelo (larg, alt) :  "
- readLn
+Problemas:
+1) Valores muito distantes resultam em uma lista de circulos disconexos, então usar x e y sendo valores proximos pode resultar em uma imagem que seja mais fiel ao propósito...
 
--- String inicial do SVG
-svgInicio :: Int -> Int -> String
-svgInicio w h = printf "<svg width='%.2f' height='%.2f' xmlns='http://www.w3.org/2000/svg'>\n" w h 
-
--- String final do SVG
-svgFinal :: String
-svgFinal = "</svg>"
-
-svgCircle :: Int -> Int -> Int -> String -> String 
-svgCircle x y r style = 
-  printf "<circle cx='%d' cy='%d' r='%d' fill='%s' />\n" x y r style
-
-svgAll :: Int -> Int -> String
-svgAll x y = 
-  svgInicio x y ++ 
-  (svgCircle 10 10 50 "rgb(255, 255, 255,0.5)") ++ 
-  svgFinal
-
-main :: IO ()
-main = do
-  larg <- leLarg
-  alt <- leAlt
-  ponto <- lePonto
-  putStrLn "Voce digitou " 
-  print larg
-  writeFile "circles.svg" (svgAll larg alt)
-
-
-  catch (readIO s) trataErro
-  where trataErro e = if IO.isUserError e
-                         then do putStrLn "Numero invalido"
-                                 leInt
-                         else ioError e
+2) Me limitei a pensar em números aleatórios (e acabou que não consegui inserir no código) assim, resultou em uma pouca variedade de cores para a imagem.

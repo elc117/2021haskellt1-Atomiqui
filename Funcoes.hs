@@ -16,22 +16,24 @@ leCord :: IO(Int, Int)
 leCord = do
   readLn
 
---Verifica se o ponto passado está dentro do tamanho da imagem e corrige
-verifica :: Float -> Float -> (Int, Int) -> (Int, Int)
-verifica 0 0 (px, py) = (0, 0)
-verifica x y (px, py)
-  | px > floor x && py > floor y = (floor x, floor y)
-  | px > floor x && py <= floor y = (floor x, py)
-  | px <= floor x && py > floor y = (px, floor y)
-  | otherwise = (px, py)
+tenPercent :: Float -> Int
+tenPercent x = floor (0.1*x)
 
---Gera uma cor aleatória para o circulo
+mediaXY :: Float -> Float -> Float
+mediaXY x y = ((x+y)/2)
+
+-- Gera um lista de circulos a partir do uso da função "svgCircle"
+lstCirc :: Int -> Int -> Int -> Int -> [String]
+lstCirc n x y r = [svgCircle (x+w) (y+w) r (geraCor (w+x-n) (w+y-r)) | w <- [r, r+7..r+7*n]]
+
+-- Gera uma cor aleatória para o circulo
 geraCor :: Int -> Int -> String
-geraCor x y = (\x -> "rgb" ++ show x) (x, y, x+y, 1)
+geraCor x y
+  | x < y = (\x -> "rgb" ++ show x) (y-x, x*2, 2*(x-y)+y)
+  | x > y = (\x -> "rgb" ++ show x) (2*(x-y)+y, x*2, y-x)
+  | otherwise = (\x -> "rgb" ++ show x) (x, y-x, x*2)
 
-
--- Reaproveitadas dos arquivos SVG
-
+-- Reaproveitadas dos seus arquivos SVG
 -- String inicial do SVG
 svgBegin :: Float -> Float -> String
 svgBegin w h = printf "<svg width='%.2f' height='%.2f' xmlns='http://www.w3.org/2000/svg'>\n" w h
