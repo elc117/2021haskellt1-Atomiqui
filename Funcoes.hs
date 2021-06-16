@@ -1,7 +1,7 @@
 module Funcoes where
 
 import Text.Printf
-
+-- Funções de leitura de dados --
 leFloat :: IO(Float)
 leFloat = do 
   f <- readLn
@@ -12,14 +12,16 @@ leInt = do
   i <- readLn
   return i
 
+-- Retorna em int, 10% do valor de um float --
 tenPercent :: Float -> Int
 tenPercent x = floor (0.1*x)
 
--- Gera um lista de circulos a partir do uso da função "svgCircle"
+-- Gera um lista de circulos a partir do uso da função "svgCircle", que recebe os valores rgb da função "geraCor" --
+-- Ambas aproveitam a variação dentro da lista "w" para variar posição/cor --
 lstCirc :: Int -> Int -> Int -> Int -> [String]
 lstCirc n x y r = [svgCircle (x+w) (y+w) r (geraCor (w+x-n) (w+y-r)) | w <- [r, r+7..r+7*n]]
 
--- Gera uma cor aleatória para o circulo
+-- Gera uma cor 'aleatória' para um circulo, de acordo com a variação dos valores que são passados --
 geraCor :: Int -> Int -> String
 geraCor x y
   | x < y = (\x -> "rgb" ++ show x) (y-x, x*2, 2*(x-y)+y)
